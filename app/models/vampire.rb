@@ -1,0 +1,2 @@
+class Vampire < ApplicationRecord
+end
