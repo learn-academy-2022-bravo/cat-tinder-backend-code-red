@@ -7,13 +7,21 @@ class VampiresController < ApplicationController
 
     def create
         vampire = Vampire.create(vampire_params)
-        render json: vampire
+        if vampire.valid?
+            render json: vampire
+        else
+            render json: vampire.errors, status: 422
+        end
     end
 
     def update
         vampire = Vampire.find(params[:id])
         vampire.update(vampire_params)
-        render json: vampire
+        if vampire.valid?
+            render json: vampire
+        else
+            render json: vampire.errors, status: 422
+        end
     end
 
     def destroy
